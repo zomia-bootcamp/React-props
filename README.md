@@ -8,7 +8,12 @@
 - Work with a component's children.
 - Set default values for props.
 
+## Preparation
 
+1. Fork and clone this repository.
+2. Create a new branch called `training` for your work.
+3. Install the necessary dependencies using `npm install`.
+4. Start your server by running `npm start`
 
 ## Intro:
 
