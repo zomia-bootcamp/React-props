@@ -135,7 +135,7 @@ Both approaches are valid and achieve the same result. Choose the one that feels
 
 ### Exercise
 
-* In `Product.js`, modify the `Product` component to accept `props` in the function definition. 
+* In [`Product.js`](./src/components/Product.js), modify the `Product` component to accept `props` in the function definition. 
 
 * Within the component, use the dot notation to access the specific prop values and inject them into the appropriate elements.
 
@@ -186,7 +186,135 @@ By passing props from component to component, you can effectively share informat
 ### Group Activity
 
 Pass the props `songName`, and `artist` to the `Player` component from the `App` component.
+I you were successful, The `Player` component will render the song name and artist name based on the passed props.
 
-*[Need help?](./hints/player.md)
+
+*[Need help?](./hints/player.md)*
+
+
+## Rendering Different UI Based on Props
+
+To render different UI based on props, you can use conditional statements within your components. Here's an example:
+
+```jsx
+function LoginMsg(props) {
+  if (props.password === 'a-tough-password') {
+    return <h2>Sign In Successful.</h2>;
+  } else {
+    return <h2>Sign In Failed.</h2>;
+  }
+}
+```
+
+In this example, the `LoginMsg` component receives a `password` prop. Inside the component, a conditional statement is used to check the value of the `password` prop. If the `password` is equal to `'a-tough-password'`, the component returns `<h2>Sign In Successful.</h2>`. Otherwise, it returns `<h2>Sign In Failed.</h2>`.
+
+By using conditional statements like this, you can customize the UI of your components based on the values of the props passed to them. This allows you to handle different cases and display different content accordingly.
+
+### Exercise
+
+In the [`Greeting.js`](./src/copmonents/Greeting.js) component, you can see that it expects two props: `name` and `signedIn`. The `signedIn` prop is only used to determine which message to display.
+Inside the component, a conditional statement is used to check the value of the `signedIn` prop. If it is `true`, the component displays a welcome message with the `name` prop. If it is `false`, it displays a sign-in message with the `name` prop.
+
+In the `App.js` file, pass an additional attribute to the `Greeting` component to control the value of `signedIn`. Set the value ti `false`.
+
+Save your code to see the changes in the browser.
+
+
+## Event Handlers
+
+In React, you can define an event handler as a method within a function component. This allows you to handle events such as clicks, form submissions, or keyboard interactions.
+
+Here's an example in [Example.js](./src/components/Example.js):
+
+```jsx
+import React from 'react';
+
+function Example() {
+  // Event handler method
+  const handleClick = () => {
+    console.log('Button clicked!');
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Click Me</button>
+    </div>
+  );
+}
+
+export default Example;
+```
+
+In this example, the `handleClick` function is defined as an event handler for the button's `onClick` event. When the button is clicked, the function will be executed, and the message "Button clicked!" will be logged to the console.
+
+Note that the event handler method is defined within the function component's body, and it can access other variables and props within the component.
+
+By passing event handler functions as props, you can enable interactivity in your React components and respond to user actions.
+
+### Group Activity
+
+* In [Talker.js](./src/components/Talker.js), we need to rewrite the `talk()` function as a method defined **inside** the Talker component. 
+
+Remember to delete the original `talk()` function before running the code.
+
+* Now, we want to pass the `talk()` method from the `Talker` component to the `Button` component. To do that, we need to give the `Button` component an attribute and set its value to the `talk` method.
+
+To do so, we can pass the `talk` method as a prop named `talk` to the `Button` component. The prop value is set to the `talk` method, and we use curly braces to indicate that it is a JavaScript expression.
+
+Now the `Button` component can access and use the `talk` method through its props.
+
+* In [Button.js](./src/components/Button.js), we want to attach the `talk` function as an event handler to the `<button>` element. To do that, we need to add an `onClick` attribute to the `<button>` element and set its value to the `talk` property of the `props`.
+
+Now, when you click on the button, the `talk` function will be invoked.
+
+
+## HandleEvent, onEvent, and props.onEvent
+
+When choosing names for event handlers and props that pass event handlers, there is a commonly used naming convention in React.
+
+For the event handler function itself, the convention is to use a name that starts with "handle" followed by the type of event you are listening for. For example, if you are listening for a "click" event, you can name your event handler function as `handleClick`. If you are listening for a "hover" event, you can name your event handler function as `handleHover`.
+
+Here's an example:
+
+```jsx
+function MyComponent() {
+  function handleClick() {
+    // Event handler logic
+  }
+
+  function handleHover() {
+    // Event handler logic
+  }
+
+  return (
+    <div>
+      <button onClick={handleClick}>Click me!</button>
+      <div onMouseOver={handleHover}>Hover over me!</div>
+    </div>
+  );
+}
+```
+
+For the prop that passes the event handler, the convention is to use the prefix "on" followed by the type of event you are listening for. For example, if you are listening for a "click" event, you can name your prop as `onClick`. If you are listening for a "hover" event, you can name your prop as `onHover`.
+
+Here's an example:
+
+```jsx
+function ParentComponent() {
+  function handleClick() {
+    // Event handler logic
+  }
+
+  return <ChildComponent onClick={handleClick} />;
+}
+```
+
+Following this naming convention can make your code more consistent and easier to understand. However, it's important to note that these naming conventions are not required by React and you can choose different names if you prefer.
+
+### Group Activity
+
+Fix the naming in [Talker.js](./src/components/Talker.js), and [Button.js](./src/components/Button.js) to match React's naming convention.
+
+*[Need help?](./hints/talker.md.md)*
 
 
