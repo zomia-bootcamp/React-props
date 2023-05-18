@@ -8,6 +8,8 @@
 - Work with a component's children.
 - Set default values for props.
 
+
+
 ## Intro:
 
 In a React application, components act as small building blocks that come together to form the user interface.
@@ -317,4 +319,62 @@ Fix the naming in [Talker.js](./src/components/Talker.js), and [Button.js](./src
 
 *[Need help?](./hints/talker.md.md)*
 
+
+It's important to note that names like `onClick` have special meanings when used on HTML-like JSX elements. In Button.js, the `onClick` attribute on the `<button>` element creates an event listener that listens for clicks on the button. However, in Talker.js, the `onClick` attribute given to `<Button />` is just a normal attribute name because `<Button />` is a component instance, not an HTML-like JSX element.
+
+Please run your program to ensure the button is working as intended.
+
+## props.children
+
+Every component's `props` object has a property called `children`.
+
+`props.children` will give you everything that is placed between the opening and closing tags of a component in JSX.
+
+Up until now, you have seen components with self-closing tags like `<MyFunctionComponent />`. However, they don't have to be written that way! You can use `<MyFunctionComponent></MyFunctionComponent>`, and it will still work.
+
+With `props.children`, you can access everything placed between `<MyFunctionComponent>` and `</MyFunctionComponent>`.
+
+By utilizing `props.children`, we can separate the outer component (in this case, `MyFunctionComponent`) from its content. This makes the component flexible and reusable.
+
+## Expirement
+
+Take a look at [`BigButton.js`](./src/components/BigButton.js).
+
+Try to guess the output for each example 
+
+---
+
+
+If a component has more than one child between its JSX tags, then `props.children` will return those children as an array. However, if a component has only one child, then `props.children` will return that single child without being wrapped in an array.
+
+## Group Activity
+
+
+Take a look at [`ButtonContainer.js`](./src/components/ButtonContainer.js), notice how it is rendering two instances of `<List>`, and each `<List>` has at least one `<li>` child.
+
+Now, open [`List.js`](./src/components/List.js) and examine the `List` component.
+
+Consider the fact that each `List` instance will be rendered with two JSX tags:
+
+```jsx
+<List>  // opening tag
+</List> // closing tag
+```
+
+And there will be at least one `<li></li>` child between those tags:
+
+```jsx
+<List>  // opening tag
+  <li></li> // child
+</List> // closing tag
+```
+You can see two list titles in the browser, but no list items! How can you make the list items appear?
+
+* Open `List.js`. In the return statement of the `List` component, add `{props.children}` between the `<ul></ul>` tags.
+
+* Save code to see the changes in your browser.
+
+* Optional Task: Each `<List></List>` instance has a singular title: "Living Musician" and "Living Cat Musician" respectively. Somehow, each `<List></List>` automatically adds an "s" to the end of its title if the count of list items is greater than one. Even if we add a second piano cat, the second list title will automatically become plural.
+
+See if you can figure out how the instances of the `List` component class automatically pluralize their titles!
 
