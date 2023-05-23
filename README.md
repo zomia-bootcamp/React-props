@@ -356,7 +356,9 @@ Now, open [`List.js`](./src/components/List.js) and examine the `List` component
 Consider the fact that each `List` instance will be rendered with two JSX tags:
 
 ```jsx
-<List> // opening tag</List> // closing tag
+<List> // opening tag
+
+</List> // closing tag
 ```
 
 And there will be at least one `<li></li>` child between those tags:
